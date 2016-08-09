@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# si la conf n'existe pas après le partage des volumes, on la restaure
+if [ ! -f /etc/apache2/apache2.conf ]
+then
+  cp -a /root/apache2 /etc/
+fi
+
+if [ ! -d /var/lock/apache2 ]
+then
+	mkdir /var/lock/apache2
+fi
+
+if [ ! -d /var/run/apache2 ]
+then
+	mkdir /var/run/apache2
+fi
+
+/usr/bin/supervisord
